@@ -75,7 +75,7 @@
       fill: gradient.linear(uds-green, iq-blue)
     )
   }
-  
+
   set page(
     background: [
       #if show-progress {
@@ -102,16 +102,45 @@
     #set align(horizon+center)
     #set page(
       footer: none,
-      background: image("title.svg")
+      background: [
+        #place(left+bottom, curve(
+          stroke: (thickness: 4pt, paint: rgb("c5e9ef").lighten(40%)),
+          curve.cubic((550pt, 100pt), (575pt, -150pt), (600pt, 230pt)),
+          curve.cubic((20pt, -200pt), (70pt, -200pt), (242pt, -200pt), relative: true)
+        ))
+        #place(left+bottom, curve(
+          stroke: (thickness: 4pt, paint: rgb("cfe6e1").lighten(30%)),
+          curve.cubic((550pt, 100pt), (560pt, -160pt), (585pt, 210pt)),
+          curve.cubic((20pt, -200pt), (70pt, -180pt), (257pt, -180pt), relative: true)
+        ))
+        #place(left+bottom, curve(
+          stroke: (thickness: 4pt, paint: rgb("dbe2d2").lighten(20%)),
+          curve.cubic((550pt, 100pt), (540pt, -100pt), (550pt, 180pt)),
+          curve.cubic((20pt, -200pt), (70pt, -150pt), (292pt, -150pt), relative: true)
+        ))
+        #place(left+bottom, curve(
+          stroke: (thickness: 4pt, paint: rgb("e7dec5").lighten(20%)),
+          curve.cubic((500pt, 100pt), (500pt, -100pt), (500pt, 120pt)),
+          curve.cubic((80pt, -150pt), (200pt, -80pt), (342pt, -90pt), relative: true)
+        ))
+        #place(left+bottom, curve(
+          stroke: iq-black+24pt,
+          curve.line((0%, 100%)),
+          curve.line((100%, 100%)),
+          curve.line((100%, 0%)),
+          curve.close()
+        ))
+        #place(bottom+right, dx: -12pt, dy: -12pt, image("iq-logo-black.svg", height: 1in))
+      ]
     )
 
     #text(size: 36pt, title)
-    
+
     #text(size: 18pt, author)
     #v(-.25em)
     #text(size: 18pt, date)
   ]
-  
+
   body
 }
 
@@ -133,8 +162,5 @@
 #let mp = math.minus.plus
 // math.expectationvalue shorthand
 #let ev(content) = expectationvalue(content)
-// Override of ketbra and braket so that there is no deprecation warning
-#let ketbra(arg1, arg2) = [#ket(arg1)#bra(arg2)]
-
-#let lind(smth) = {[#math.cal("D") [#smth]]}
+// upright mu symbol e.g. for writing microns
 #let micro = math.upright(math.mu)

@@ -1,0 +1,10 @@
+[package]
+name = "perplexed"
+version = "0.1.0"
+entrypoint = "lib.typ"
+authors = ["Yannick Lapointe <@yalap13>"]
+license = "MIT"
+
+[template]
+path = "template"
+entrypoint = "main.typ"
