@@ -90,7 +90,7 @@
           fill: iq-black,
           width: 100%,
           height: 1in,
-          place(right, image("iq-logo-white.svg"))
+          place(right, image("assets/iq-logo-white.svg"))
         )
       )
     ]
@@ -130,7 +130,7 @@
           curve.line((100%, 0%)),
           curve.close()
         ))
-        #place(bottom+right, dx: -12pt, dy: -12pt, image("iq-logo-black.svg", height: 1in))
+        #place(bottom+right, dx: -12pt, dy: -12pt, image("assets/iq-logo-black.svg", height: 1in))
       ]
     )
 
