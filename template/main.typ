@@ -1,4 +1,4 @@
-#import "../template/perplexed.typ": *
+#import "@local/perplexed:0.1.0": *
 
 #show: perplexed.with(
   title: "Example",
