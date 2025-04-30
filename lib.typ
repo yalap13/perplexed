@@ -134,7 +134,7 @@
       ]
     )
 
-    #text(size: 36pt, title)
+    #text(size: 30pt, title)
 
     #text(size: 18pt, author)
     #v(-.25em)
