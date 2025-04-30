@@ -7,6 +7,8 @@
   show-progress: false,
 )
 
+#section-slide(title: "First section")
+
 #slide(title: "Example slide")[
   - This is an example
 ]

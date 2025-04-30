@@ -160,6 +160,24 @@
   }
 }
 
+// Section slide
+#let section-slide(title: none) = {
+  set page(
+    background: [
+      #place(left+bottom, curve(
+        stroke: iq-black+24pt,
+        curve.line((0%, 100%)),
+        curve.line((100%, 100%)),
+        curve.line((100%, 0%)),
+        curve.close()
+      ))
+      #place(bottom+right, dx: -12pt, dy: -12pt, image("assets/iq-logo-black.svg", height: 1in))
+    ],
+    footer: none
+  )
+  align(center+horizon, text(weight: "bold", size: 26pt, title))
+}
+
 // Overrides for math
 // Show identity and diagonal with 0s by default
 #let imat = imat.with(fill:0)
