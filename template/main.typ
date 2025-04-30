@@ -6,3 +6,7 @@
   date: "31 february 2030",
   show-progress: false,
 )
+
+#slide(title: "Example slide")[
+  - This is an example
+]

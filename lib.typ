@@ -144,6 +144,22 @@
   body
 }
 
+// Slide function with added optional title
+#let polylux-slide = slide
+#let slide(title: none, body) = {
+  if title == none {
+    set page(margin: (top: 1.4in))
+    polylux-slide[
+      #body
+    ]
+  } else {
+    polylux-slide[
+      = #title
+      #body
+    ]
+  }
+}
+
 // Overrides for math
 // Show identity and diagonal with 0s by default
 #let imat = imat.with(fill:0)
