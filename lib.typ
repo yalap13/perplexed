@@ -50,6 +50,10 @@
 #let uds-green = color.rgb("#009647")
 #let iq-blue = color.rgb("#009bb4")
 #let iq-black = color.rgb("#1c1c1b")
+#let gr-blue = color.rgb("37b2c8")
+#let gr-teal = color.rgb("57a897")
+#let gr-green = color.rgb("839c63")
+#let gr-orange = color.rgb("b4984b")
 
 #let perplexed(
   title: none,
@@ -68,11 +72,11 @@
   show heading: it => block(spacing: 2em, text(fill: white, it))
 
   let progress = context {
-    let ratio = (counter("logical-slide").get().last()+1)/counter("logical-slide").final().first()
+    let ratio = (counter("logical-slide").get().last() + 1)/counter("logical-slide").final().first()
     block(
       width: 100% * ratio,
       height: 1.05in,
-      fill: gradient.linear(uds-green, iq-blue)
+      fill: gradient.linear(gr-blue, gr-orange, space: color.rgb)
     )
   }
 
