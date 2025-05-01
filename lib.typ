@@ -68,7 +68,7 @@
   show heading: it => block(spacing: 2em, text(fill: white, it))
 
   let progress = context {
-    let ratio = here().page()/counter(page).final().at(0)
+    let ratio = (counter("logical-slide").get().last()+1)/counter("logical-slide").final().first()
     block(
       width: 100% * ratio,
       height: 1.05in,
