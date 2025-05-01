@@ -152,7 +152,7 @@
 #let polylux-slide = slide
 #let slide(title: none, body) = {
   if title == none {
-    set page(margin: (top: 1.4in))
+    set page(margin: (top: 1.35in))
     polylux-slide[
       #body
     ]
