@@ -2,20 +2,60 @@
 #import "@preview/pinit:0.2.2": *
 #import "@preview/physica:0.9.4": *
 
+// Colors
+#let blue = color.rgb("0073e6")
+#let red = color.rgb("ff0040")
+#let teal = color.rgb("008080")
+#let purple = color.rgb("4a2e9e")
+#let green = color.rgb("339966")
+#let uds-green = color.rgb("#009647")
+#let iq-blue = color.rgb("#009bb4")
+#let iq-black = color.rgb("#1c1c1b")
+#let gr-blue = color.rgb("37b2c8")
+#let gr-teal = color.rgb("57a897")
+#let gr-green = color.rgb("839c63")
+#let gr-orange = color.rgb("b4984b")
+
+#let slide-num = counter("slide")
+
+// Page numbering format
 #let page-numbering-format = {
   align(
     right,
     text(
       size: 12pt,
-      fill: color.hsl(0deg, 0%, 50%)
-    )[
-        #toolbox.slide-number/#toolbox.last-slide-number
-    ]
+      fill: color.hsl(0deg, 0%, 50%),
+      [#toolbox.slide-number/#toolbox.last-slide-number]
+    )
   )
 }
+// Slide background format
+#let background-format(show-progress) = {
+  if show-progress {
+    place(
+      top+left,
+      toolbox.progress-ratio(ratio => block(
+        width: 100% * (slide-num.get().last() + 1) / slide-num.final().last(),
+        height: 1.05in,
+        fill: gradient.linear(gr-blue, gr-orange, space: color.rgb)
+      ))
+    )
+  }
+  place(
+    top,
+    block(
+      fill: iq-black,
+      width: 100%,
+      height: 1in,
+      place(right, image("assets/iq-logo-white.svg"))
+    )
+  )
+}
+// Gradient text
 #let gradient-text(grad, body) = {
   box(text(fill: grad, body))
 }
+// Admonitions
 #let admonition(
   title: none,
   colour: none,
@@ -42,19 +82,7 @@
   )
 }
 
-#let blue = color.rgb("0073e6")
-#let red = color.rgb("ff0040")
-#let teal = color.rgb("008080")
-#let purple = color.rgb("4a2e9e")
-#let green = color.rgb("339966")
-#let uds-green = color.rgb("#009647")
-#let iq-blue = color.rgb("#009bb4")
-#let iq-black = color.rgb("#1c1c1b")
-#let gr-blue = color.rgb("37b2c8")
-#let gr-teal = color.rgb("57a897")
-#let gr-green = color.rgb("839c63")
-#let gr-orange = color.rgb("b4984b")
-
+// Main show rule for template
 #let perplexed(
   title: none,
   author: none,
@@ -65,40 +93,13 @@
   set page(
     paper: "presentation-16-9",
     margin: .4in,
-    footer: page-numbering-format
+    footer: page-numbering-format,
+    background: background-format(show-progress)
   )
   set text(font: "IBM Plex Sans", size: 18pt, fill: iq-black)
   show math.equation: set text(font: "IBM Plex Math")
   show heading: it => block(spacing: 2em, text(fill: white, it))
 
-  let progress = context {
-    let ratio = (counter("logical-slide").get().last() + 1)/counter("logical-slide").final().first()
-    block(
-      width: 100% * ratio,
-      height: 1.05in,
-      fill: gradient.linear(gr-blue, gr-orange, space: color.rgb)
-    )
-  }
-
-  set page(
-    background: [
-      #if show-progress {
-        place(
-          top,
-          progress
-        )
-      }
-      #place(
-        top,
-        block(
-          fill: iq-black,
-          width: 100%,
-          height: 1in,
-          place(right, image("assets/iq-logo-white.svg"))
-        )
-      )
-    ]
-  )
   set list(spacing: 1.25em)
 
   // title slide
@@ -162,6 +163,7 @@
       #body
     ]
   }
+  slide-num.step()
 }
 
 // Section slide
